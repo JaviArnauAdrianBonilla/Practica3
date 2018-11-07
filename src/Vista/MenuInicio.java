@@ -208,6 +208,7 @@ public class MenuInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         for(int i = 0; i < 10; i++)
             invasionControlador.AvanzarDia();
+        
     }//GEN-LAST:event_avanzar10DiasActionPerformed
 
 

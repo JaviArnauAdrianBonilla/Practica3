@@ -98,6 +98,8 @@ public class InvasionControlador {
         cadena = Integer.toString(zombies.size());
         return cadena;
     }
+    
+
     public void creacionVampiros(int cantidad){
         Vampiros vamp;
         for(int i = 0; i < cantidad; i++){
@@ -221,15 +223,16 @@ public class InvasionControlador {
            else
                humanosmuertos.add(humano);
        }
+       
+       detallesTipoSer[0] = humanosnacidos.size();
+       detallesTipoSer[1] = humanosmuertos.size();
+       
        for(int i = 0; i < humanosnacidos.size(); i++){
            humanos.add(humanosnacidos.get(i));
        }
        for(int i = 0; i < humanosmuertos.size(); i++){
            humanos.remove(humanosmuertos.get(i));
        }
-       
-       detallesTipoSer[0] = humanosnacidos.size();
-       detallesTipoSer[1] = humanosmuertos.size();
        
        humanosnacidos.clear();
        humanosmuertos.clear();      
@@ -262,9 +265,11 @@ public class InvasionControlador {
             else
                 cazavampirosmuertos.add(cazaV);
         }
+        
         detallesTipoSer[2] = cazavampirosnacidos.size();
         detallesTipoSer[3] = cazavampirosmuertos.size();
         detallesTipoSer[7] = vampir.size();
+        
         for(int i = 0; i < cazavampirosnacidos.size(); i++){
            humanos.add(cazavampirosnacidos.get(i));
        }
@@ -286,7 +291,7 @@ public class InvasionControlador {
        Vampiros vampiro;
        int numeroAleatorio, contadorVampiros = 0;
        
-       for(int i = 0; i < vampiros.size(); i++){
+        for(int i = 0; i < vampiros.size(); i++){
            if(vampiros.get(i).MatarHumano()){
                if(!humanos.isEmpty()){
                    numeroAleatorio = ser.numeroAleatorio(0,humanos.size()-1);
@@ -299,7 +304,8 @@ public class InvasionControlador {
                    }
                }
            }
-       }
+        }
+       
         detallesTipoSer[2] = contadorVampiros;
         detallesTipoSer[3] = vampirosnacidos.size();
         detallesTipoSer[4] = vampirosmuertos.size();
@@ -310,6 +316,7 @@ public class InvasionControlador {
         for(int i = 0; i < vampirosmuertos.size(); i++){
            vampiros.remove(vampirosmuertos.get(i));
         }
+        
         vampirosnacidos.clear();
         vampirosmuertos.clear();
     }
@@ -319,7 +326,8 @@ public class InvasionControlador {
         zombiesnacidos = new ArrayList<Zombies>();
         zombiesmuertos = new ArrayList<Zombies>();
         Comparacion comparacion = new Comparacion();
-        Zombies zombie;
+        Zombies zombie = null; 
+        boolean ok = false;
         
         if(!humanos.isEmpty()){
             humanosaux.addAll(humanos);
@@ -331,15 +339,40 @@ public class InvasionControlador {
         }
         
         for(int i = 0; i < zombies.size(); i++){
-            if((dia-zombies.get(i).getNacimiento()) != 8){
-                if((!humanos.isEmpty() || !cazavampiros.isEmpty()) && zombies.get(i).convertirHumanoAZombie()){
+            if((dia-zombies.get(i).getNacimiento()) < 8){
+                if((!humanos.isEmpty() || !cazavampiros.isEmpty())){
+                    if(humanos.get(0).getVelocidad() > cazavampiros.get(0).getVelocidad()){
+                        zombie = cazavampiros.get(0).convertirAzombie(dia);
+                    }
+                    else{
+                        humanos.get(0).convertirAzombie(dia);
+                        ok = true;
+                    }
                     //zombie = convertirHumanoAZombie();
-                    //zombiesnacidos.add(zombie);
                 }
+                else if(humanos.isEmpty()){
+                    zombie = cazavampiros.get(0).convertirAzombie(dia);
+                }
+                else{
+                    zombie = humanos.get(0).convertirAzombie(dia);
+                    ok = true;
+                }
+                
+                if(ok = true){
+                    humanos.remove(0);
+                }
+                else
+                    cazavampiros.remove(0);
+
+                zombiesnacidos.add(zombie);
+
             }
             else
                 zombiesmuertos.add(zombies.get(i));
+            
+
         }
+        
         detallesTipoSer[8] = zombiesmuertos.size();
         detallesTipoSer[9] = zombiesnacidos.size();
         
@@ -349,9 +382,14 @@ public class InvasionControlador {
         for(int i = 0; i < zombiesmuertos.size(); i++){
            zombies.remove(zombiesmuertos.get(i));
         }
+        
         vampirosnacidos.clear();
         vampirosmuertos.clear();       
     }
+    
+   /* public Zombie convertirZombieAHumano(){
+        
+    }*/
     
 public class Comparacion implements Comparator<Humanos>{
     

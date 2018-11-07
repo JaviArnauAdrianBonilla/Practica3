@@ -59,12 +59,14 @@ public class Humanos extends Seres {
             v = new Vampiros(this.getNacimiento());
             return v;
         }
-        return v;
+        else
+            return v;
     }
     
     public Zombies convertirAzombie(int nacimiento){
         Zombies z;
         //Creo que falta la probabilidad de convertir a ZOMBIE
+        //if(super.probabilidad(velocidad, muerte))
         z = new Zombies(nacimiento);
         return z;
     }

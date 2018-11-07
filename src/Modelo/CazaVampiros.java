@@ -32,5 +32,12 @@ public class CazaVampiros extends Humanos {
     public boolean cazarVampiros(){
         return super.probabilidad(1, 3);
     }
+    public Zombies convertirAzombie(int nacimiento){
+        Zombies z;
+        //Creo que falta la probabilidad de convertir a ZOMBIE
+        //if(super.probabilidad(velocidad, muerte))
+        z = new Zombies(nacimiento);
+        return z;
+    }
     
 }

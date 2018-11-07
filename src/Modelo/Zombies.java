@@ -12,7 +12,7 @@ package Modelo;
 public class Zombies extends Seres{
     
     private int numReproduccion, siguienteSer, convertirseZombie;
-    
+    private Humanos h;
     public Zombies(int nacimiento){
         super.setNacimiento(nacimiento);
         //SI no funicona bien probar con siguienteSer +1
@@ -33,5 +33,5 @@ public class Zombies extends Seres{
     }
     public boolean convertirHumanoAZombie(){
         return super.probabilidad(1, 10);
-    }    
+    }           
 }
