@@ -7,6 +7,8 @@ package Vista;
 
 import java.awt.event.MouseEvent;
 import Controlador.InvasionControlador;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -179,6 +181,7 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void mostrarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarDetallesActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, invasionControlador);
     }//GEN-LAST:event_mostrarDetallesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -188,6 +191,7 @@ public class MenuInicio extends javax.swing.JFrame {
    
         dia = invasionControlador.getDia();
         temperatura = invasionControlador.getTemperatura();
+        //Hay que mirar esto de crear la cantidad de los seres.
         humanos = invasionControlador.cantidadHumanos();
         cazavampiros = invasionControlador.cantidadCazaVampiros();
         vampiros = invasionControlador.cantidadVampiros();
@@ -198,8 +202,6 @@ public class MenuInicio extends javax.swing.JFrame {
                   "\n\tNumero total de VAMPIROS: "+ vampiros+ "\n\tNumero total de ZOMBIES: " + zombies);
         
         jTextAreaInformacion.setText(cadena);  
-        //temperatura = invasionControlador.getTemperatura();
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void avanzar10DiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar10DiasActionPerformed

@@ -178,19 +178,20 @@ public class InvasionControlador {
         numAleatorioCazavampiros = 12;
         numAleatorioVampiros = 18;
         numAleatorioZombies = 25;
-        */
+        
         
         creacionHumanos(numAleatorioHumanos);
         creacionCazaVampiros(numAleatorioCazavampiros);
         creacionVampiros(numAleatorioVampiros);
         creacionZombies(numAleatorioZombies);        
-        
+        */
         dia = 1;
         temperatura = 20;
     }
     
     public void AvanzarDia(){
         dia++;
+        setTemperatura();
         setEliminarDetallesTipoSer();
         vidaHumano();
         vidaCazaVampiro();
@@ -365,7 +366,7 @@ public class Comparacion implements Comparator<Humanos>{
 }
     
     public String toString(){
-        return "\t\tDia: " + dia+ "\tTemperatura: "+ temperatura+"\n\nCantidad de Humanos Nacidos: "+ detallesTipoSer[0]+
+        return "\t\tDia: " + dia+ " \t Temperatura: "+ temperatura+"\n\nCantidad de Humanos Nacidos: "+ detallesTipoSer[0]+
                 "\nCantidad de humanos muertos por muerte natural: "+ detallesTipoSer[1]+"\nCantidad de humanos Cazavampiros nacidos:"+
                 detallesTipoSer[2]+"\nCantidad Humanos Cazavampiros muertos por muerte natural: "+ detallesTipoSer[3]+
                 "\nCantidad de humanos mordidos por Vampiros: "+detallesTipoSer[4]+"\nCantidad de Humanos convertidos a Vampiros: "+
