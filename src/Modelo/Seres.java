@@ -27,7 +27,7 @@ public abstract class Seres {
         return numeroAleatorio(1, total)<= probabilidad;
     }
     public int numeroAleatorio(int minimo, int maximo){
-        Random r = new Random();
+        Random r = new Random(System.currentTimeMillis());
         int nuevoNumero;
         
         nuevoNumero = r.nextInt(maximo - minimo + 1 ) + minimo;

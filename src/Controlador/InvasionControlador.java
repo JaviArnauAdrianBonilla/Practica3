@@ -339,8 +339,8 @@ public class InvasionControlador {
         }
         
         for(int i = 0; i < zombies.size(); i++){
-            if((dia-zombies.get(i).getNacimiento()) < 8){
-                if((!humanos.isEmpty() || !cazavampiros.isEmpty())){
+            if((dia-zombies.get(i).getNacimiento()) != 8){
+                if((!humanos.isEmpty() || !cazavampiros.isEmpty()) && zombies.get(i).convertirHumanoAZombie()){
                     if(humanos.get(0).getVelocidad() > cazavampiros.get(0).getVelocidad()){
                         zombie = cazavampiros.get(0).convertirAzombie(dia);
                     }
@@ -348,7 +348,7 @@ public class InvasionControlador {
                         humanos.get(0).convertirAzombie(dia);
                         ok = true;
                     }
-                    //zombie = convertirHumanoAZombie();
+
                 }
                 else if(humanos.isEmpty()){
                     zombie = cazavampiros.get(0).convertirAzombie(dia);
@@ -386,10 +386,7 @@ public class InvasionControlador {
         vampirosnacidos.clear();
         vampirosmuertos.clear();       
     }
-    
-   /* public Zombie convertirZombieAHumano(){
-        
-    }*/
+
     
 public class Comparacion implements Comparator<Humanos>{
     
