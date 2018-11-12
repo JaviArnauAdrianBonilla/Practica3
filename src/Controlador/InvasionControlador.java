@@ -176,18 +176,6 @@ public class InvasionControlador implements Serializable {
         creacionVampiros(numAleatorioVampiros);
         creacionZombies(numAleatorioZombies);
         
-        //Esto es una prueba para ver si cogia bien los datos
-       /* numAleatorioHumanos = 3000;
-        numAleatorioCazavampiros = 12;
-        numAleatorioVampiros = 18;
-        numAleatorioZombies = 25;
-        
-        
-        creacionHumanos(numAleatorioHumanos);
-        creacionCazaVampiros(numAleatorioCazavampiros);
-        creacionVampiros(numAleatorioVampiros);
-        creacionZombies(numAleatorioZombies);        
-        */
         dia = 1;
         temperatura = 20;
     }
