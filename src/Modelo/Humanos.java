@@ -5,11 +5,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author javie
  */
-public class Humanos extends Seres {
+public class Humanos extends Seres implements Serializable{
     private int velocidad, reproduccion, muerte, siguienteSer;
     
     public Humanos(int nacimiento){

@@ -5,13 +5,14 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author javie
  */
-public abstract class Seres {
+public abstract class Seres implements Serializable{
     private int nacimiento, tipoSer;
     private boolean  serVivo = false;
             

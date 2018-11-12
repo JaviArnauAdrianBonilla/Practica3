@@ -5,11 +5,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author javie
  */
-public class CazaVampiros extends Humanos {
+public class CazaVampiros extends Humanos implements Serializable {
     
     private int vampirosMatados, siguienteSer;
     

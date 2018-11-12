@@ -5,11 +5,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author javie
  */
-public class Zombies extends Seres{
+public class Zombies extends Seres implements Serializable{
     
     private int numReproduccion, siguienteSer, convertirseZombie;
     private Humanos h;
@@ -20,7 +22,7 @@ public class Zombies extends Seres{
         //siguienteSer += 1;
         this.numReproduccion = 0;
        //Probar sin esto y con esto
-        //convertirseZombie = 10;
+        convertirseZombie = 10;
     }
     public int getprobConvertirseZombie(){
         return convertirseZombie;
@@ -32,6 +34,6 @@ public class Zombies extends Seres{
         numReproduccion++;
     }
     public boolean convertirHumanoAZombie(){
-        return super.probabilidad(1, 10);
+        return super.probabilidad(1, convertirseZombie);
     }           
 }

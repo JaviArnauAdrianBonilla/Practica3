@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup3">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup4">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup5">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -24,45 +36,66 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="mostrarDetalles" min="-2" pref="156" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="395" max="-2" attributes="0"/>
-              <Component id="salirPrograma" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
-              <Component id="jLabelInformacion" min="-2" pref="221" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabelInformacion" min="-2" pref="221" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <Component id="creaNuevoEntorno" min="-2" pref="169" max="-2" attributes="0"/>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="116" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Component id="avanzar10Dias" min="-2" pref="120" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="producirAcontecimiento" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="creaNuevoEntorno" min="-2" pref="202" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="avanzar1Dia" min="-2" pref="142" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="avanzar10Dias" min="-2" pref="141" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="mostrarDetalles" min="-2" pref="179" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="calentamientoGlobal" max="32767" attributes="0"/>
+                  <Component id="enfriamientoGlobal" max="32767" attributes="0"/>
+                  <Component id="invasionZombie" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="505" max="-2" attributes="0"/>
+                  <Component id="salirPrograma" min="-2" pref="224" max="-2" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton1" pref="63" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="creaNuevoEntorno" alignment="0" pref="78" max="32767" attributes="0"/>
+                  <Component id="mostrarDetalles" alignment="0" max="32767" attributes="0"/>
+                  <Component id="avanzar1Dia" alignment="0" max="32767" attributes="0"/>
                   <Component id="avanzar10Dias" alignment="0" max="32767" attributes="0"/>
-                  <Component id="producirAcontecimiento" alignment="0" max="32767" attributes="0"/>
-                  <Component id="creaNuevoEntorno" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="jLabelInformacion" min="-2" pref="27" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="193" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="salirPrograma" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="mostrarDetalles" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="jLabelInformacion" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" pref="192" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="salirPrograma" min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="invasionZombie" min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="enfriamientoGlobal" min="-2" pref="56" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="calentamientoGlobal" pref="67" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -77,12 +110,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="creaNuevoEntornoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="avanzar1Dia">
       <Properties>
         <Property name="text" type="java.lang.String" value="Avanzar 1 Dia"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avanzar1DiaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="mostrarDetalles">
@@ -100,11 +133,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avanzar10DiasActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="producirAcontecimiento">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Producir Acontecimiento"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="salirPrograma">
       <Properties>
@@ -134,6 +162,38 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="INFORMACI&#xd3;N BASICA DEL ENTORNO"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Bright" size="12" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ACONTECIMIENTOS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="invasionZombie">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Invasion Zombie"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="invasionZombieActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="enfriamientoGlobal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enfriamiento Global"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enfriamientoGlobalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="calentamientoGlobal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Calentamiento Global"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calentamientoGlobalActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -7,6 +7,17 @@ package Vista;
 
 import java.awt.event.MouseEvent;
 import Controlador.InvasionControlador;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -14,9 +25,15 @@ import static javax.swing.JOptionPane.showMessageDialog;
  *
  * @author javie
  */
-public class MenuInicio extends javax.swing.JFrame {
+public class MenuInicio extends javax.swing.JFrame implements Serializable{
     private InvasionControlador invasionControlador;
-    
+    private static int acontecimientoInvasionZombie = 1;
+    private static int acontecimientoEnfriamientoGlobal = 2;
+    private static int acontecimientoCalentamientoGlobal = 3;
+    FileOutputStream file;
+
+    boolean ok;
+    int acontecimientos;
     /**
      * Creates new form MenuInicio
      */
@@ -24,13 +41,42 @@ public class MenuInicio extends javax.swing.JFrame {
         initComponents();
         avanzar10Dias.setEnabled(false);
         creaNuevoEntorno.setEnabled(true);
-        jButton1.setEnabled(false);
+        avanzar1Dia.setEnabled(false);
         jLabelInformacion.setEnabled(false);
         jScrollPane1.setEnabled(false);
-        jTextAreaInformacion.setEnabled(false);
+        jTextAreaInformacion.setEnabled(true);
         mostrarDetalles.setEnabled(false);
-        producirAcontecimiento.setEnabled(false);
+        invasionZombie.setEnabled(false);
+        calentamientoGlobal.setEnabled(false);
+        enfriamientoGlobal.setEnabled(false);
         salirPrograma.setEnabled(true);
+        acontecimientos = 0;
+        ok = false;
+        
+        try{
+            ObjectInputStream fin = new ObjectInputStream(new FileInputStream("./src/ficheroGuardado.bin"));
+            invasionControlador = (InvasionControlador) fin.readObject();
+            fin.close();
+            escribirDatos();
+            
+                avanzar10Dias.setEnabled(true);
+                avanzar1Dia.setEnabled(true);
+                jLabelInformacion.setEnabled(true);
+                jScrollPane1.setEnabled(true);
+                jTextAreaInformacion.setEnabled(true);
+                mostrarDetalles.setEnabled(true);
+                invasionZombie.setEnabled(true);
+                calentamientoGlobal.setEnabled(true);
+                enfriamientoGlobal.setEnabled(true);
+            
+        }
+        catch(IOException exception){
+            System.out.println("A ocurrido una excepcion de tipo: " + exception);
+        }
+        catch(ClassNotFoundException classex){
+            System.out.println("A ocurrido una excepcion de tipo: " + classex);           
+        }
+       
     }
 
     /**
@@ -42,15 +88,23 @@ public class MenuInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
         creaNuevoEntorno = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        avanzar1Dia = new javax.swing.JButton();
         mostrarDetalles = new javax.swing.JButton();
         avanzar10Dias = new javax.swing.JButton();
-        producirAcontecimiento = new javax.swing.JButton();
         salirPrograma = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaInformacion = new javax.swing.JTextArea();
         jLabelInformacion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        invasionZombie = new javax.swing.JButton();
+        enfriamientoGlobal = new javax.swing.JButton();
+        calentamientoGlobal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,10 +115,10 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Avanzar 1 Dia");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        avanzar1Dia.setText("Avanzar 1 Dia");
+        avanzar1Dia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                avanzar1DiaActionPerformed(evt);
             }
         });
 
@@ -82,8 +136,6 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
 
-        producirAcontecimiento.setText("Producir Acontecimiento");
-
         salirPrograma.setText("Salir del Programa");
         salirPrograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,45 +150,85 @@ public class MenuInicio extends javax.swing.JFrame {
 
         jLabelInformacion.setText("INFORMACIÓN BASICA DEL ENTORNO");
 
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 3, 12)); // NOI18N
+        jLabel1.setText("ACONTECIMIENTOS :");
+
+        invasionZombie.setText("Invasion Zombie");
+        invasionZombie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invasionZombieActionPerformed(evt);
+            }
+        });
+
+        enfriamientoGlobal.setText("Enfriamiento Global");
+        enfriamientoGlobal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enfriamientoGlobalActionPerformed(evt);
+            }
+        });
+
+        calentamientoGlobal.setText("Calentamiento Global");
+        calentamientoGlobal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calentamientoGlobalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(mostrarDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(395, 395, 395)
-                .addComponent(salirPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(251, 251, 251)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(157, 157, 157))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(creaNuevoEntorno, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(avanzar10Dias, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(producirAcontecimiento)
-                .addGap(43, 43, 43))
-            .addComponent(jScrollPane1)
+                .addComponent(creaNuevoEntorno, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(avanzar1Dia, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(avanzar10Dias, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(mostrarDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(calentamientoGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(enfriamientoGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(invasionZombie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salirPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(avanzar10Dias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(producirAcontecimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(creaNuevoEntorno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(23, 23, 23)
-                .addComponent(jLabelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(creaNuevoEntorno, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addComponent(mostrarDetalles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(avanzar1Dia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(avanzar10Dias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salirPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mostrarDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(salirPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(invasionZombie, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(enfriamientoGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(calentamientoGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                        .addGap(41, 41, 41))))
         );
 
         pack();
@@ -145,22 +237,23 @@ public class MenuInicio extends javax.swing.JFrame {
     private void creaNuevoEntornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creaNuevoEntornoActionPerformed
         // TODO add your handling code here:
         invasionControlador = new InvasionControlador();
-        
         avanzar10Dias.setEnabled(true);
-        jButton1.setEnabled(true);
+        avanzar1Dia.setEnabled(true);
         jLabelInformacion.setEnabled(true);
         jScrollPane1.setEnabled(true);
         jTextAreaInformacion.setEnabled(true);
         mostrarDetalles.setEnabled(true);
-        producirAcontecimiento.setEnabled(true);
+        invasionZombie.setEnabled(true);
+        calentamientoGlobal.setEnabled(true);
+        enfriamientoGlobal.setEnabled(true);
         informacionInicio();
 
     }//GEN-LAST:event_creaNuevoEntornoActionPerformed
-    
-    private void informacionInicio(){
+    private void escribirDatos(){
         String humanos, cazavampiros, vampiros, zombies, dia, temperatura, cadena;
-        invasionControlador.crearInvasion();
         
+      
+        //invasionControlador.AvanzarDia();
         dia = invasionControlador.getDia();
         temperatura = invasionControlador.getTemperatura();
         humanos = invasionControlador.cantidadHumanos();
@@ -172,10 +265,23 @@ public class MenuInicio extends javax.swing.JFrame {
                   "\n\n\tNumero total de HUMANOS : " + humanos+"\n\tNumero total de CAZAVAMPIROS: "+ cazavampiros+
                   "\n\tNumero total de VAMPIROS: "+ vampiros+ "\n\tNumero total de ZOMBIES: " + zombies);
         
-        jTextAreaInformacion.setText(cadena);  
+        jTextAreaInformacion.setText(cadena); 
+    }
+    private void informacionInicio(){
+        invasionControlador.crearInvasion();
+        escribirDatos();
     }
     private void salirProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirProgramaActionPerformed
         // TODO add your handling code here:
+        try {
+                file = new FileOutputStream(new File("./src/ficheroGuardado.bin"));
+                ObjectOutputStream out = new ObjectOutputStream(file);
+                out.writeObject(invasionControlador);
+                out.close();
+        } catch (IOException exception) {
+            System.out.println("A ocurrido una excepcion de tipo: " + exception);
+                
+        }
         System.exit(0);
     }//GEN-LAST:event_salirProgramaActionPerformed
 
@@ -184,25 +290,43 @@ public class MenuInicio extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, invasionControlador);
     }//GEN-LAST:event_mostrarDetallesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void avanzar1DiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar1DiaActionPerformed
         // TODO add your handling code here:
         String humanos, cazavampiros, vampiros, zombies, dia, temperatura, cadena;
+        float tipoTemperatura = 0;
         invasionControlador.AvanzarDia();
-   
-        dia = invasionControlador.getDia();
-        temperatura = invasionControlador.getTemperatura();
-        //Hay que mirar esto de crear la cantidad de los seres.
-        humanos = invasionControlador.cantidadHumanos();
-        cazavampiros = invasionControlador.cantidadCazaVampiros();
-        vampiros = invasionControlador.cantidadVampiros();
-        zombies = invasionControlador.cantidadZombies();
+        if(acontecimientos == 1){
+            JOptionPane.showMessageDialog(rootPane, "INVASION ZOMBIE");
+            invasionControlador.probabilidadConvertirseZombie(3);
+        }
+        else if(acontecimientos == 2){
+            JOptionPane.showMessageDialog(rootPane, "ENFRIAMIENTO GLOBAL");
+            tipoTemperatura = -10;
+        }
         
-        cadena = ("\t\t\t\nInvasion Creada\n\n\tDia: "+ dia+"\n\tTemperatura Actual: "+ temperatura +
-                  "\n\n\tNumero total de HUMANOS : " + humanos+"\n\tNumero total de CAZAVAMPIROS: "+ cazavampiros+
-                  "\n\tNumero total de VAMPIROS: "+ vampiros+ "\n\tNumero total de ZOMBIES: " + zombies);
+        else if(acontecimientos == 3){
+            JOptionPane.showMessageDialog(rootPane, "CALENTAMIENTO GLOBAL");
+            tipoTemperatura = 10;
+        }
+        else
+            tipoTemperatura = 0;
+
+        if (tipoTemperatura == 0) {
+            invasionControlador.setTemperatura();
+        } 
+        /*else if(tipoTemperatura > 0) {
+            invasionControlador.incrementarTemperatura(tipoTemperatura);
+        }*/
+        else
+            invasionControlador.incrementarTemperatura(tipoTemperatura);
+            //invasionControlador.disminuirTemperatura(tipoTemperatura);
         
-        jTextAreaInformacion.setText(cadena);  
-    }//GEN-LAST:event_jButton1ActionPerformed
+        escribirDatos();
+        calentamientoGlobal.setEnabled(true);
+        enfriamientoGlobal.setEnabled(true);
+        invasionZombie.setEnabled(true);
+
+    }//GEN-LAST:event_avanzar1DiaActionPerformed
 
     private void avanzar10DiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar10DiasActionPerformed
         // TODO add your handling code here:
@@ -211,16 +335,67 @@ public class MenuInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_avanzar10DiasActionPerformed
 
+    private void invasionZombieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invasionZombieActionPerformed
+        // TODO add your handling code here:
+        if(!ok){
+        acontecimientos = acontecimientoInvasionZombie;
+        calentamientoGlobal.setEnabled(false);
+        enfriamientoGlobal.setEnabled(false);
+        }
+        else{
+            ok = false;
+            acontecimientos = 0;
+        }
+    }//GEN-LAST:event_invasionZombieActionPerformed
 
+    private void calentamientoGlobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calentamientoGlobalActionPerformed
+        // TODO add your handling code here:
+        if(!ok){
+        acontecimientos = acontecimientoCalentamientoGlobal;
+        invasionZombie.setEnabled(false);
+        enfriamientoGlobal.setEnabled(false);
+        }
+        else{
+            ok = false;
+            acontecimientos = 0;
+                   
+        }
+
+    }//GEN-LAST:event_calentamientoGlobalActionPerformed
+
+    private void enfriamientoGlobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enfriamientoGlobalActionPerformed
+        // TODO add your handling code here:
+        if(!ok){
+            ok = true;
+            acontecimientos = acontecimientoEnfriamientoGlobal;
+            calentamientoGlobal.setEnabled(false);
+            invasionZombie.setEnabled(false);
+        }
+        else{
+            ok = false;
+            acontecimientos = 0;
+        }
+          
+    }//GEN-LAST:event_enfriamientoGlobalActionPerformed
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton avanzar10Dias;
+    private javax.swing.JButton avanzar1Dia;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.JButton calentamientoGlobal;
     private javax.swing.JButton creaNuevoEntorno;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton enfriamientoGlobal;
+    private javax.swing.JButton invasionZombie;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelInformacion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaInformacion;
     private javax.swing.JButton mostrarDetalles;
-    private javax.swing.JButton producirAcontecimiento;
     private javax.swing.JButton salirPrograma;
     // End of variables declaration//GEN-END:variables
 }

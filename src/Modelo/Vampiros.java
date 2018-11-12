@@ -5,11 +5,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author javie
  */
-public class Vampiros extends Seres{
+public class Vampiros extends Seres implements Serializable{
     private int numReproduccion, siguienteSer;
     
     //Puede ser que nacimiento dentro de vampiros no sea necesario

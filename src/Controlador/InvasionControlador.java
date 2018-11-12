@@ -10,6 +10,7 @@ import Modelo.Humanos;
 import Modelo.CazaVampiros;
 import Modelo.Vampiros;
 import Modelo.Zombies;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,7 +18,7 @@ import java.util.Comparator;
  *
  * @author javier y adrian
  */
-public class InvasionControlador {
+public class InvasionControlador implements Serializable {
     private ArrayList<Humanos> humanos;
     private ArrayList<Humanos> humanosnacidos;
     private ArrayList<Humanos> humanosmuertos;
@@ -192,7 +193,8 @@ public class InvasionControlador {
     }
     
     public void AvanzarDia(){
-        dia++;
+        //dia++;
+        setDia();
         setTemperatura();
         setEliminarDetallesTipoSer();
         vidaHumano();
@@ -256,8 +258,8 @@ public class InvasionControlador {
                         cazavampirosnacidos.add(hijosCazaVamp);
                     }
                 }
-                if(cazaV.cazarVampiros() && vampiros.size()>1){
-                    numeroAleatorio = ser.numeroAleatorio(0, vampiros.size() -1);
+                if(cazaV.cazarVampiros() && vampiros.size()>= 1){
+                    numeroAleatorio = ser.numeroAleatorio(0, vampiros.size());
                     cazaV.setvampirosMatados();
                     vampir.add(vampiros.get(numeroAleatorio));
                 }
