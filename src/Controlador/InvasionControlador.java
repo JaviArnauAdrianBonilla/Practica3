@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.Comparator;
 /**
  *
- * @author javier y adrian
+ * @author Javier Arnau y Adrian Bonilla
  */
 public class InvasionControlador implements Serializable {
     private ArrayList<Humanos> humanos;

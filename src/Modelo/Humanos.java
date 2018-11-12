@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author javie
+ * @author Javier Arnau y Adrian Bonilla
  */
 public class Humanos extends Seres implements Serializable{
     private int velocidad, reproduccion, muerte, siguienteSer;

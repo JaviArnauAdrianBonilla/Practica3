@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author javie
+ * @author Javier Arnau y Adrian Bonilla
  */
 public class Vampiros extends Seres implements Serializable{
     private int numReproduccion, siguienteSer;

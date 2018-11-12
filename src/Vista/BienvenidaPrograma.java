@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author javie
+ * @author Javier Arnau y Adrian Bonilla
  */
 public class BienvenidaPrograma extends javax.swing.JFrame {
 

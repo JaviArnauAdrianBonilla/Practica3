@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author javie
+ * @author Javier Arnau y Adrian Bonilla
  */
 public class CazaVampiros extends Humanos implements Serializable {
     

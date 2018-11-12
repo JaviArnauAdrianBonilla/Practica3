@@ -23,7 +23,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
- * @author javie
+ * @author Javier Arnau y Adrian Bonilla
  */
 public class MenuInicio extends javax.swing.JFrame implements Serializable{
     private InvasionControlador invasionControlador;

@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author javie
+ * @author Javier Arnau y Adrian Bonilla
  */
 public abstract class Seres implements Serializable{
     private int nacimiento, tipoSer;
